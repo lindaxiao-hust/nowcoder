@@ -41,10 +41,11 @@ function findSumArr(n, m, sumArr, sumsArr) {
     }
 
     // 注意：这里不能直接使用 tmpArr=sumArr
-    var tmpArr = []
-    sumArr.forEach(function(item) {
-        tmpArr.push(item)
-    })
+    // var tmpArr = []
+    // sumArr.forEach(function(item) {
+    //     tmpArr.push(item)
+    // })
+    var tmpArr = sumArr.slice(0)
     // 1. 不将n放入数组
     findSumArr(n - 1, m, sumArr, sumsArr)
     // 2. 将n放入数组
