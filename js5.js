@@ -40,7 +40,7 @@ rl.on('line', function(line) {
         result_count++
       }
     })
-    console.log(result_count);
+    // console.log(result_count);
     console.log(noCircle.length);
 
     word = []
