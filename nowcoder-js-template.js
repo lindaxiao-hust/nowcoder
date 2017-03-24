@@ -4,6 +4,10 @@ const rl = readline.createInterface({
   output: process.stdout
 })
 
+rl.on('line', function(line) {
+  // todo
+})
+
 //每读一行，即一行输入结束敲回车，执行事件line对应的方法
 rl.on('line', function(line) {
   var tokens = line.split(' ')
@@ -11,6 +15,7 @@ rl.on('line', function(line) {
   console.log(parseInt(tokens[0]) + parseInt(tokens[1]));
 })
 
+/*********************自实现多行输入***************************/
 // 获取三行输入的值，输出它们的和
 var countLine = 1
 var tokens = []
@@ -30,7 +35,43 @@ rl.on('line', function(line) {
   }
 })
 
-/************************************************/
+/*********************官方多行输入***************************/
+var readline = require('readline');
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+    terminal:false
+});
+
+var n = -1;// 初始状态为负数，表示还没开始读取
+var ans = 0;
+var cur_line = 0;
+rl.on('line', function(line){ // javascript每行数据的回调接口
+   if (n < 0) { // 测试用例第一行读取n
+       n = parseInt(line.trim())
+   } else {
+       // 矩阵数据读取
+   	   var tokens = line.split(' ');
+       for (var i = 0; i < tokens.length; ++i) {
+           // 题目逻辑求和，边读取边计算
+           ans += parseInt(tokens[i]);
+       }
+       // 记录当前读取的行数
+       cur_line += 1;
+   }
+
+   // 读取行数结束，如果确定只有一行额外的数据输入，也可以通过cur_line === 1来判断
+   if (n === cur_line) {
+       // 输出结果
+       console.log(ans);
+       // 重新初始化相关变量
+       n = -1;
+       ans = 0;
+       cur_line = 0;
+   }
+});
+
+/*********************另一种输入方式***************************/
 process.stdin.resume();
 process.stdin.setEncoding('ascii');
 
