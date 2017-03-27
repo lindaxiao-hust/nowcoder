@@ -71,7 +71,7 @@ rl.on('line', function(line){ // javascript每行数据的回调接口
    }
 });
 
-/*********************另一种输入方式***************************/
+/*********************另一种输入方式，无明确结束输入标志***************************/
 process.stdin.resume();
 process.stdin.setEncoding('ascii');
 
@@ -82,6 +82,10 @@ process.stdin.on('data', function (data) {
     input += data;
 });
 
+// 终端用Ctrl+c结束输入
+// process.on('SIGINT', function () {
+  // 你的代码
+  // process.exit(0);
 process.stdin.on('end', function () {
     input_array = input.split("\n");
     var nLine = 0;
